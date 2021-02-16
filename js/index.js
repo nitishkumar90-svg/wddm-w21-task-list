@@ -19,10 +19,6 @@ window.addEventListener(`load`, (event) => {
 
   const theFormElement = new Form(todoList)
   document.getElementById(`form`).appendChild(theFormElement)
-
-
-  // Prototype adding a new item to the list
-  theListElement.addNewTask(`Class complete!`)
 })
 
 
