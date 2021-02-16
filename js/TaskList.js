@@ -58,6 +58,11 @@ export default class TaskList extends HTMLElement {
       this.list.insertBefore(aTask, this.list.childNodes[0]);
   }
 
+  refreshList() {    
+    debugger
+    this.root.appendChild(this.list)
+  }
+
 }
 
 window.customElements.define(`task-list`, TaskList)

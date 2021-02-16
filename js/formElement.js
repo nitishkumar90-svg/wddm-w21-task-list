@@ -13,7 +13,26 @@ export default class Form extends HTMLElement {
           ul {
             padding-left: 0;
             list-style: none;
-          }`)
+          }
+          
+          input {
+              height: 2em;
+              width: 10em;
+              border-radius: 0.5em;
+          }
+
+          button {
+            height: 2.4em;
+            border-radius: 0.5em;
+            width: 5em;
+            margin-left: 1em;
+          }
+
+          .error {
+              border: 0.1em solid red;
+              border-radius: 0.5em;
+          }
+          `)
         eleStyle.appendChild(txtStyle)
         this.root.appendChild(eleStyle)
 
@@ -31,7 +50,13 @@ export default class Form extends HTMLElement {
         btnElem.setAttribute(`type`, `submit`)
         btnElem.innerText = `Add`
         btnElem.addEventListener('click', event => {
-            this.list.addNewTask(txtELem.value)
+            txtELem.classList.remove(`error`)
+            if (txtELem.value.trim() === ``)
+                txtELem.classList.add(`error`)
+            else {
+                this.list.addNewTask(txtELem.value)
+                this.list.refreshList()
+            }
             event.preventDefault()
         })
 
