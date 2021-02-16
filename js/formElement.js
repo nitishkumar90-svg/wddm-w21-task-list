@@ -7,7 +7,7 @@ export default class Form extends HTMLElement {
         super()
 
         this.root = this.attachShadow({ mode: `open` })
-
+        const emptyText = ``
         const eleStyle = document.createElement(`style`)
         const txtStyle = document.createTextNode(`
           ul {
@@ -72,13 +72,14 @@ export default class Form extends HTMLElement {
         btnElem.innerText = `Add`
         btnElem.addEventListener('click', event => {
             txtELem.classList.remove(`error`)
-            if (txtELem.value.trim() === ``)
+            debugger
+            if (txtELem.value.trim() === emptyText)
                 txtELem.classList.add(`error`)
             else {
                 this.list.addNewTask(txtELem.value, true)
-                document.getElementById(`app`).innerHTML = ``
+                document.getElementById(`app`).innerHTML = emptyText
                 document.getElementById(`app`).appendChild(this.list)
-                txtELem.value = ``
+                txtELem.value = emptyText
             }
             event.preventDefault()
         })
