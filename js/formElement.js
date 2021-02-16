@@ -78,6 +78,7 @@ export default class Form extends HTMLElement {
                 this.list.addNewTask(txtELem.value, true)
                 document.getElementById(`app`).innerHTML = ``
                 document.getElementById(`app`).appendChild(this.list)
+                txtELem.value = ``
             }
             event.preventDefault()
         })
