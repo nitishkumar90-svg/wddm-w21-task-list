@@ -18,7 +18,7 @@ export default class TaskList extends HTMLElement {
   constructor(todoList) {
     super()
 
-    this.root = this.attachShadow({mode: `open`})
+    this.root = this.attachShadow({ mode: `open` })
 
     const eleStyle = document.createElement(`style`)
     const txtStyle = document.createTextNode(`
@@ -32,15 +32,15 @@ export default class TaskList extends HTMLElement {
     // Build an empty list
     this.list = document.createElement(`ul`)
 
-/*    // Add all of the <task-item> elements to the empty list
-    const loadTaskView = ({id, complete, task}) => {
-      return `<task-item data-id="${id}" data-complete="${complete}" data-task="${task}"></task-item>`
-    }
-    eleList.innerHTML = todoList.map(loadTaskView).join(`\n`)
-*/
+    /*    // Add all of the <task-item> elements to the empty list
+        const loadTaskView = ({id, complete, task}) => {
+          return `<task-item data-id="${id}" data-complete="${complete}" data-task="${task}"></task-item>`
+        }
+        eleList.innerHTML = todoList.map(loadTaskView).join(`\n`)
+    */
     todoList.forEach((item) => {
       const aTask = new TaskItem(item)
-      aTask.addEventListener('taskChanged', event => {console.log('Task Complete?', aTask.complete)})
+      aTask.addEventListener('taskChanged', event => { console.log('Task Complete?', aTask.complete) })
       this.list.appendChild(aTask)
     })
 
@@ -48,11 +48,14 @@ export default class TaskList extends HTMLElement {
 
   }
 
-  addNewTask(name) {
+  addNewTask(name, insertOnTop) {
     // Figure out what the next available id is
-    const aTask = new TaskItem({id:4, task:name, complete:false})
-    aTask.addEventListener('taskChanged', event => {console.log('Task Complete?', aTask.complete)})
-    this.list.appendChild(aTask)
+    const aTask = new TaskItem({ id: 4, task: name, complete: false })
+    aTask.addEventListener('taskChanged', event => { console.log('Task Complete?', aTask.complete) })
+    if (!insertOnTop)
+      this.list.appendChild(aTask)
+    else
+      this.list.insertBefore(aTask, this.list.childNodes[0]);
   }
 
 }

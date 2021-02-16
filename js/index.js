@@ -1,5 +1,6 @@
 import {getJsonData} from './fetch.js'
 import TaskList from './TaskList.js'
+import Form from './formElement.js'
 
 
 
@@ -15,6 +16,9 @@ window.addEventListener(`load`, (event) => {
 
   const theListElement = new TaskList(todoList)
   document.getElementById(`app`).appendChild(theListElement)
+
+  const theFormElement = new Form(todoList)
+  document.getElementById(`form`).appendChild(theFormElement)
 
 
   // Prototype adding a new item to the list
