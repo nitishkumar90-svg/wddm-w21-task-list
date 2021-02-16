@@ -58,8 +58,6 @@ export default class Form extends HTMLElement {
           `)
         eleStyle.appendChild(txtStyle)
         this.root.appendChild(eleStyle)
-
-
         this.list = new TaskList(todoList)
 
         const formTag = document.createElement(`form`)
@@ -77,8 +75,9 @@ export default class Form extends HTMLElement {
             if (txtELem.value.trim() === ``)
                 txtELem.classList.add(`error`)
             else {
-                this.list.addNewTask(txtELem.value)
-                this.list.refreshList()
+                this.list.addNewTask(txtELem.value, true)
+                document.getElementById(`app`).innerHTML = ``
+                document.getElementById(`app`).appendChild(this.list)
             }
             event.preventDefault()
         })
